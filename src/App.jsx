@@ -2,7 +2,11 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
-const API_URL = "http://localhost:8080/api/leaves";
+// Replace this with your actual Render backend domain.
+const API_URL =
+  "https://YOUR-RENDER-BACKEND-URL.onrender.com/api/leaves";
+
+const HEALTH_URL = API_URL.replace("/api/leaves", "/api/health");
 
 function App() {
   const [employee, setEmployee] = useState("Ashritha");
@@ -15,7 +19,7 @@ function App() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/health")
+    fetch(HEALTH_URL)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Backend request failed");
@@ -40,6 +44,7 @@ function App() {
       setRequests(data.reverse());
     } catch (error) {
       console.error("Error loading leave requests:", error);
+      setBackendStatus("Could not load leave requests");
     }
   }
 
@@ -90,7 +95,7 @@ function App() {
     } catch (error) {
       console.error("Error submitting leave request:", error);
       alert(
-        "Could not save the leave request. Please check that your backend is running."
+        "Could not save the leave request. Please check your backend connection."
       );
     } finally {
       setSubmitting(false);
