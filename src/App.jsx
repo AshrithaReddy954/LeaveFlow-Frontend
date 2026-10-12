@@ -4,7 +4,7 @@ import "./App.css";
 
 // Replace this with your actual Render backend domain.
 const API_URL =
-  "https://YOUR-RENDER-BACKEND-URL.onrender.com/api/leaves";
+  "https://leaveflow-frontend-4nhz.onrender.com"
 
 const HEALTH_URL = API_URL.replace("/api/leaves", "/api/health");
 
